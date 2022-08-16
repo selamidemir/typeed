@@ -13,6 +13,7 @@ function WritingForm() {
   const startTyping = (e) => {
     e.preventDefault();
     dispatch(setStarted(true));
+    dispatch(setTimeCount(-1));
   }
 
   const startGame = () => {
