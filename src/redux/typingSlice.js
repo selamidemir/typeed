@@ -5,18 +5,18 @@ import { getOneWord } from "../assets/words";
 export const typingSlice = createSlice({
     name: 'typing',
     initialState: {
-        // words: getWords(),
         isTyping: false,
         isStarted: false,
         currentWord: '',
         writtenWord: '',
         lastWritedChar: '',
-        timer: null,
+        timeCount: -1,
         charCount: 0,
         lineOne: [],
         lineTwo: [],
         currenWordIndex: null,
         isMisspelled: false,
+        isGameOver: false,
     },
     reducers: {
         setTyping: (state, action) => {
@@ -67,9 +67,6 @@ export const typingSlice = createSlice({
              state.lineOne[state.currenWordIndex].bgColor = 'red';
             }    
         },
-        setTimer: (state, action) => {
-            state.timer = action.payload;
-        },
         addCounter: (state, action) => {
             state.count += 1;
         },
@@ -105,19 +102,29 @@ export const typingSlice = createSlice({
             state.currentWord = state.lineOne[state.currenWordIndex];
             state.lineOne[state.currenWordIndex].bgColor = 'gray';
             state.writtenWord = '';
+        },
+        decreaseTimeCount: (state, action) => {
+            state.timeCount -= 1;
+        },
+        setTimeCount: (state, action) => {
+            state.timeCount = action.payload;
+        },
+        setIsGameOver: (state, action) => {
+            state.isGameOver = action.payload;
         }
     }
 });
 
-export const { setTyping, setStarted, setwrittenWord, setTimer, setMissipelled, writtenWordOver } = typingSlice.actions;
+export const { setTyping, setStarted, setwrittenWord, setTimer, setMissipelled, writtenWordOver, decreaseTimeCount, setTimeCount, setIsGameOver } = typingSlice.actions;
 
 export const selectIsTyping = state => state.typing.isTyping;
 export const selectIsStarted = state => state.typing.isStarted;
-export const selectTimer = state => state.typing.timer;
 export const selectwrittenWord = state => state.typing.writtenWord;
 export const selectLineOne = state => state.typing.lineOne;
 export const selectLineTwo = state => state.typing.lineTwo;
 export const selectCurrentWordIndex = state => state.typing.currenWordIndex;
 export const selectMissipelled = state => state.typing.isMisspelled;
+export const selectTimeCount = state => state.typing.timeCount;
+export const selectIsGameOver = state => state.typing.isGameOver;
 
 export default typingSlice.reducer;
