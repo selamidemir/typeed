@@ -18,7 +18,7 @@ function WritingForm() {
 
   const startGame = () => {
     dispatch(setTyping(true));
-    dispatch(setTimeCount(59));
+    dispatch(setTimeCount(19));
   }
 
   const handleChangeWord = (e) => {
@@ -31,30 +31,18 @@ function WritingForm() {
   }
 
   useEffect(() => {
-    const gameOver = () => {
-      dispatch(setStarted(false));
-      dispatch(setTyping(false));
-
-      dispatch(setIsGameOver());
-    };
-
     const countdown = () => {
       return setTimeout(() => {
         dispatch(decreaseTimeCount());
       }, 1000);
     }
     if (timeCount < 0) return;
-    // Öceki setTimeout işlemini durdur
-    // ve yeni bir setTimeout başlat
-    // clearTimeout(gameTimer);
     if (timeCount > 0) {
       countdown();
-      // const timeId = countdown();
-      // dispatch(setTimer(timeId));
-    } else gameOver();
+    } else dispatch(setIsGameOver());;
   }, [timeCount, dispatch]);
 
-  if (isGameOver) alert("oyun bitti akıllı ol")
+  // if (isGameOver) alert("oyun bitti akıllı ol");
   return (
     <div className='form-area'>
       <input name='writingInput' id='writingInput' value={writtenWord} onChange={(e) => handleChangeWord(e)} /> <span className='timer-area'>{timeCount < 0 ? '60' : timeCount}</span>

@@ -11,12 +11,15 @@ export const typingSlice = createSlice({
         writtenWord: '',
         lastWritedChar: '',
         timeCount: -1,
-        charCount: 0,
+        totalCharCount: 0,
+        totalWrongCharCount: 0,
         lineOne: [],
         lineTwo: [],
         currenWordIndex: null,
         isMisspelled: false,
         isGameOver: false,
+        trueWordsCount: 0,
+        falseWordsCount: 0,
     },
     reducers: {
         setTyping: (state, action) => {
@@ -51,6 +54,10 @@ export const typingSlice = createSlice({
             state.currentWord = state.lineOne[0];
             state.currentWord.bgColor = 'gray';
             state.currenWordIndex = 0;
+            state.totalCharCount = 0;
+            state.totalWrongCharCount = 0;
+            state.trueWordsCount = 0;
+            state.falseWordsCount = 0;
         },
         setCurrentWord: (state, action) => {
             state.currentWord = action.payload;
@@ -58,29 +65,31 @@ export const typingSlice = createSlice({
         setwrittenWord: (state, action) => {
             state.writtenWord = action.payload;
             state.lastWritedChar = action.payload.slice(action.payload.length-1, action.payload.length);
-            if(state.lineOne[state.currenWordIndex].word.search(state.writtenWord) === 0) {
+            if(state.lineOne[state.currenWordIndex].word.search(state.writtenWord) === 0) { // Written word is true
+                state.totalCharCount += 1;
                 state.lineOne[state.currenWordIndex].isWrong = false;
                 state.lineOne[state.currenWordIndex].bgColor = 'gray';
             }
-            else {
+            else { // written word is wrong
+             state.totalWrongCharCount += 1;
              state.lineOne[state.currenWordIndex].isWrong = true;
              state.lineOne[state.currenWordIndex].bgColor = 'red';
             }    
-        },
-        addCounter: (state, action) => {
-            state.count += 1;
         },
         setMissipelled: (state, action) => {
             state.isMisspelled = action.payload;
         },
         writtenWordOver: (state, action) => {
-            if(state.currentWord.word === state.writtenWord) {
+            if(state.currentWord.word === state.writtenWord) { 
+                // true word written
                 state.lineOne[state.currenWordIndex].color = 'green';
                 state.lineOne[state.currenWordIndex].bgColor = '';
+                state.trueWordsCount += 1;
             }
-            else {
+            else { // wrong word written
                 state.lineOne[state.currenWordIndex].color = 'red';
                 state.lineOne[state.currenWordIndex].bgColor = '';
+                state.falseWordsCount += 1;
             }
             state.lineOne[state.currenWordIndex].wrong = false;
             state.lineOne[state.currenWordIndex].bgColor = '';
@@ -111,11 +120,21 @@ export const typingSlice = createSlice({
         },
         setIsGameOver: (state, action) => {
             state.isGameOver = action.payload;
-        }
+            state.lineOne = [];
+            state.lineTwo = [];
+            state.isTyping = false;
+            state.isStarted = false;
+            state.currentWord = '';
+            state.writtenWord = '';
+            state.lastWritedChar = '';
+            state.currenWordIndex = 0;
+            state.timeCount = -1;
+            state.isGameOver = true;
+        },
     }
 });
 
-export const { setTyping, setStarted, setwrittenWord, setTimer, setMissipelled, writtenWordOver, decreaseTimeCount, setTimeCount, setIsGameOver } = typingSlice.actions;
+export const { setTyping, setStarted, setwrittenWord, setMissipelled, writtenWordOver, decreaseTimeCount, setTimeCount, setIsGameOver } = typingSlice.actions;
 
 export const selectIsTyping = state => state.typing.isTyping;
 export const selectIsStarted = state => state.typing.isStarted;
