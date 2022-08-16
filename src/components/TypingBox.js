@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { selectCurrentWordIndex, selectIsGameOver, selectLineOne, selectLineTwo } from '../redux/typingSlice';
+import GameOver from './GameOver';
 import Word from './Word';
 
 function TypingBox() {
@@ -20,7 +21,7 @@ function TypingBox() {
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>{lineTwo.map((word, key) => <Word key={key + 101} word={word} />)}</div>
           </>
         }
-        {isGameOver && lineOne.length <= 0 && "oyun bitti"
+        {isGameOver && lineOne.length <= 0 && <GameOver />
 
         }
       </div>

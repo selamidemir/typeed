@@ -11,15 +11,17 @@ export const typingSlice = createSlice({
         writtenWord: '',
         lastWritedChar: '',
         timeCount: -1,
-        totalCharCount: 0,
-        totalWrongCharCount: 0,
         lineOne: [],
         lineTwo: [],
         currenWordIndex: null,
         isMisspelled: false,
         isGameOver: false,
-        trueWordsCount: 0,
-        falseWordsCount: 0,
+        count: {
+            trueWordsCount: 0,
+            falseWordsCount: 0,
+            totalCharCount: 0,
+            totalWrongCharCount: 0,
+        }
     },
     reducers: {
         setTyping: (state, action) => {
@@ -54,10 +56,12 @@ export const typingSlice = createSlice({
             state.currentWord = state.lineOne[0];
             state.currentWord.bgColor = 'gray';
             state.currenWordIndex = 0;
-            state.totalCharCount = 0;
-            state.totalWrongCharCount = 0;
-            state.trueWordsCount = 0;
-            state.falseWordsCount = 0;
+            state.count = {
+                trueWordsCount: 0,
+                falseWordsCount: 0,
+                totalCharCount: 0,
+                totalWrongCharCount: 0,
+            }
         },
         setCurrentWord: (state, action) => {
             state.currentWord = action.payload;
@@ -66,12 +70,12 @@ export const typingSlice = createSlice({
             state.writtenWord = action.payload;
             state.lastWritedChar = action.payload.slice(action.payload.length-1, action.payload.length);
             if(state.lineOne[state.currenWordIndex].word.search(state.writtenWord) === 0) { // Written word is true
-                state.totalCharCount += 1;
+                state.count.totalCharCount += 1;
                 state.lineOne[state.currenWordIndex].isWrong = false;
                 state.lineOne[state.currenWordIndex].bgColor = 'gray';
             }
             else { // written word is wrong
-             state.totalWrongCharCount += 1;
+             state.count.totalWrongCharCount += 1;
              state.lineOne[state.currenWordIndex].isWrong = true;
              state.lineOne[state.currenWordIndex].bgColor = 'red';
             }    
@@ -84,12 +88,12 @@ export const typingSlice = createSlice({
                 // true word written
                 state.lineOne[state.currenWordIndex].color = 'green';
                 state.lineOne[state.currenWordIndex].bgColor = '';
-                state.trueWordsCount += 1;
+                state.count.trueWordsCount += 1;
             }
             else { // wrong word written
                 state.lineOne[state.currenWordIndex].color = 'red';
                 state.lineOne[state.currenWordIndex].bgColor = '';
-                state.falseWordsCount += 1;
+                state.count.falseWordsCount += 1;
             }
             state.lineOne[state.currenWordIndex].wrong = false;
             state.lineOne[state.currenWordIndex].bgColor = '';
@@ -145,5 +149,6 @@ export const selectCurrentWordIndex = state => state.typing.currenWordIndex;
 export const selectMissipelled = state => state.typing.isMisspelled;
 export const selectTimeCount = state => state.typing.timeCount;
 export const selectIsGameOver = state => state.typing.isGameOver;
+export const selectWordsCount = state => state.typing.count;
 
 export default typingSlice.reducer;

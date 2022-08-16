@@ -81,6 +81,14 @@ body {
   border-radius: 3px;
 }
 
+.game-over {
+  font-size: 13px;
+}
+
+.game-over-left {
+  background-color: bisque;
+}
+
 .footer {
   width: 960px;
   padding: 15px;
