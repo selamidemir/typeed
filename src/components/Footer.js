@@ -2,7 +2,7 @@ import React from 'react';
 
 function Footer() {
   return (
-    <div className='footer'>Footer</div>
+    <div className='footer'>2022 @ Coded By Selami Demir</div>
   );
 }
 

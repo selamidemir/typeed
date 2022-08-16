@@ -1,7 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { selectCurrentWordIndex, selectIsGameOver, selectLineOne, selectLineTwo } from '../redux/typingSlice';
-import GameOver from './GameOver';
 import Word from './Word';
 
 function TypingBox() {
@@ -12,20 +11,21 @@ function TypingBox() {
   const information = 'To start the speed test, first click the refresh button. Then your time will start when you start typing. Good luck :)';
 
   return (
-    <div className='typing-box'>
-      <div className='typing-box-area' name='writing-area' id='writing-area'>
-        {!isGameOver && lineOne.length <= 0 && information}
-        {lineOne.length > 0 &&
-          <>
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>{lineOne.map((word, key) => <Word key={key} line={1} word={word} current={currentWordIndex} />)}</div>
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>{lineTwo.map((word, key) => <Word key={key + 101} word={word} />)}</div>
-          </>
-        }
-        {isGameOver && lineOne.length <= 0 && <GameOver />
-
-        }
-      </div>
-    </div>
+    <>
+      {!isGameOver &&
+        <div className='typing-box'>
+          <div className='typing-box-area' name='writing-area' id='writing-area'>
+            {lineOne.length <= 0 && information}
+            {lineOne.length > 0 &&
+              <>
+                <div style={{ display: 'flex', justifyContent: 'space-between' }}>{lineOne.map((word, key) => <Word key={key} line={1} word={word} current={currentWordIndex} />)}</div>
+                <div style={{ display: 'flex', justifyContent: 'space-between' }}>{lineTwo.map((word, key) => <Word key={key + 101} word={word} />)}</div>
+              </>
+            }
+          </div>
+        </div>
+      }
+    </>
   );
 }
 
