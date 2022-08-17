@@ -1,6 +1,8 @@
 # Typeed
 ## The app evaluate user write speed on keyboard.
 
+Demo [https://typeed.netlify.app/](https://typeed.netlify.app/ "Typeed Demo Site")
+
 Patika Redux dersinde verilmiş olan, klavye hız yazım testi uygulaması. 
 ## Kullanımı
 Hız testi başladığında ekandaki yazıları
