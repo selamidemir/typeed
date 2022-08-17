@@ -13,7 +13,7 @@ function WritingForm() {
 
   const startGame = () => {
     dispatch(setTyping(true));
-    dispatch(setTimeCount(9));
+    dispatch(setTimeCount(59));
   }
 
   const handleChangeWord = (e) => {

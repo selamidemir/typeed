@@ -15,12 +15,12 @@ function GameOver() {
               <h2>Typing Is Over</h2>
               <div className='congratulations'>Congratulations</div>
               <div className='your-score'>Your Score</div>
-              <div className='score'> {count.trueWordsCount}</div>
+              <div className='score'><div style={{margin: 'auto'}}>{count.trueWordsCount}</div></div>
               <div className='wpm'>WPM</div>
               <div className='wpm-1'>(Word Per Minute)</div>
               <div className='score-info'>
                 <div><span className='info-name'>Key Stroke:</span> <span>({count.totalCharCount} - <span style={{ color: 'red' }}>{count.totalWrongCharCount}</span>)</span> {count.totalCharCount + count.totalWrongCharCount}</div>
-                <div><span className='info-name'>Accuracy:</span> 55%</div>
+                <div><span className='info-name'>Accuracy:</span> {Math.floor((100 / (count.totalCharCount + count.totalWrongCharCount) * count.totalCharCount))}%</div>
                 <div><span className='info-name'>Correct Words:</span> {count.trueWordsCount}</div>
                 <div><span className='info-name'>Wrong Words:</span> {count.totalWrongCharCount}</div>
               </div>
