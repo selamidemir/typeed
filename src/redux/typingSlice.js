@@ -61,7 +61,7 @@ export const typingSlice = createSlice({
                 falseWordsCount: 0,
                 totalCharCount: 0,
                 totalWrongCharCount: 0,
-            }
+            };
         },
         setCurrentWord: (state, action) => {
             state.currentWord = action.payload;
@@ -133,7 +133,6 @@ export const typingSlice = createSlice({
             state.lastWritedChar = '';
             state.currenWordIndex = 0;
             state.timeCount = -1;
-            state.isGameOver = true;
         },
     }
 });

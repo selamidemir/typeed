@@ -34,7 +34,7 @@ function WritingForm() {
     if (timeCount < 0) return;
     if (timeCount > 0) {
       countdown();
-    } else dispatch(setIsGameOver());;
+    } else dispatch(setIsGameOver(true));;
   }, [timeCount, dispatch]);
 
   return (
