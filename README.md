@@ -31,7 +31,7 @@ UI was created Html and Css.
   
 ## Ekran Görüntüleri
 
-![Uygulama Ekran Görüntüsü](https://github.com/selamidemir/bnotes/blob/main/bnotes-screen-shots.gif)
+![Uygulama Ekran Görüntüsü](typeed-ekran-goruntusu.gif)
 
   
 ## Rozetler
