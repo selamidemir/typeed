@@ -10,7 +10,7 @@ body {
 .header {
   text-align: center;
   padding: 3px;
-  background-color:rgba(135, 206, 250, 0.068);
+  background-color:rgba(135, 206, 250, 0.041);
   border-bottom-left-radius: 7px;
   border-bottom-right-radius: 7px;
   border-bottom: 3px lightblue solid;
@@ -23,9 +23,13 @@ body {
 }
 
 .content {
-  margin-top: 35px;
-  padding: 15px;
+  margin-top: 55px;
   width: 960px;
+  background-color: bisque;
+  padding: 25px;
+  border-radius: 7px;
+  border: 3px lightblue solid;
+  height: 50vh;
 }
 
 .typing-box {
@@ -40,7 +44,7 @@ body {
   font-size: 2em;
   padding: 19px;
   line-height: 1.3em;
-  border: 3px lightblue solid;
+  border: 3px rgba(128, 128, 128, 0.507) solid;
   border-radius: 7px;
   background-color: white;
 }
@@ -75,10 +79,10 @@ body {
 .header button {
   font-size: 2.5em;
   height: 105px;
-  width: 75px;
+  width: 105px;
   cursor: pointer;
   background-color: dodgerblue;
-  border-radius: 5px;
+  border-radius: 50px;
 }
 
 .current-line {
@@ -87,8 +91,9 @@ body {
   border-radius: 3px;
 }
 
-.game-over-left {
+.game-over {
   background-color: bisque;
+  padding: 25px;
 }
 
 .footer {
@@ -96,8 +101,9 @@ body {
   width: 960px;
   padding: 15px;
   text-align: center;
-  color:dimgray;
+  color:#fff;
   font-weight: 500;
+  font-size: 1.7em;
 }
 
 .card {
@@ -154,10 +160,12 @@ body {
 }
 
 .card .imgBx .score {
+  display: flex;
+  align-items: center;
   text-align: center;
   margin: auto;
   color: black;
-  font-size: 55px;
+  font-size: 35px;
   font-weight: bolder;
   background-color: skyblue;
   width: 75px;
@@ -196,8 +204,14 @@ body {
 }
 
 .card .imgBx .score-info .info-name {
-  margin-right: 15px;
+  display: inline-block;
+  width: 113px;
+  /* margin-right: 3px; */
   color:teal;
+}
+
+.card .imgBx .score-info div{
+  border-bottom: 1px teal solid;
 }
 
 .card .imgBx .score-info div {

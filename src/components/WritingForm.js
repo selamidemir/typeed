@@ -13,7 +13,7 @@ function WritingForm() {
 
   const startGame = () => {
     dispatch(setTyping(true));
-    dispatch(setTimeCount(9));
+    dispatch(setTimeCount(59));
   }
 
   const handleChangeWord = (e) => {
@@ -34,7 +34,7 @@ function WritingForm() {
     if (timeCount < 0) return;
     if (timeCount > 0) {
       countdown();
-    } else dispatch(setIsGameOver());;
+    } else dispatch(setIsGameOver(true));;
   }, [timeCount, dispatch]);
 
   return (
